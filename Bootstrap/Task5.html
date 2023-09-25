@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Information Form</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .info-form {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .info-form h2 {
+      text-align: center;
+    }
+
+    .info-form form {
+      padding: 20px;
+      background-color: #eee;
+    }
+
+    .info-form label {
+      display: inline-block;
+      width: 120px;
+      font-weight: bold;
+      vertical-align: top;
+    }
+
+    .info-form input[type="text"],
+    .info-form input[type="email"],
+    .info-form input[type="tel"] {
+      width: calc(70% - 130px); /* Adjusted width to accommodate labels */
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      vertical-align: top; /* Align text inputs with labels */
+      position: relative; /* Position relative for pseudo-element */
+    }
+
+    .info-form input[type="text"]::before,
+    .info-form input[type="email"]::before,
+    .info-form input[type="tel"]::before {
+      content: "X";
+      color: red;
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      pointer-events: none; /* Prevent interaction with the pseudo-element */
+    }
+
+    .info-form input[type="text"]:empty::before,
+    .info-form input[type="email"]:empty::before,
+    .info-form input[type="tel"]:empty::before {
+      content: "X";
+    }
+
+    .info-form input[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
+      margin-left: 130px; /* To match the label width */
+      vertical-align: top; /* Align submit button with labels and inputs */
+    }
+  </style>
+</head>
+<body>
+  <div class="info-form">
+    <form action="#" method="post">
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="first_name" required>
+      
+      <br>
+      
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="last_name" required>
+      
+      <br>
+      
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <br>
+      
+      <label for="phone">Phone #:</label>
+      <input type="tel" id="phone" name="phone">
+      
+      <br>
+      
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address">
+      
+      <br>
+      
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city">
+      
+      <br>
+      
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>

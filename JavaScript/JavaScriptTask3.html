@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication and Division Calculator</title>
+</head>
+<body>
+    <h1>Multiplication and Division Calculator</h1>
+    <form id="calculatorForm">
+        <label for="firstNumber">1st number:</label>
+        <input type="number" id="firstNumber" required>
+        <br>
+        <label for="secondNumber">2nd number:</label>
+        <input type="number" id="secondNumber" required>
+        <br>
+        <button type="button" id="multiplyButton">Multiply</button>
+        <button type="button" id="divideButton">Divide</button>
+    </form>
+    <p>The Result is: </p>
+    <span id="result"></span>
+
+    <script>
+        const calculatorForm = document.getElementById('calculatorForm');
+        const firstNumberInput = document.getElementById('firstNumber');
+        const secondNumberInput = document.getElementById('secondNumber');
+        const resultSpan = document.getElementById('result');
+
+        function multiplyNumbers() {
+            const firstNumber = parseFloat(firstNumberInput.value);
+            const secondNumber = parseFloat(secondNumberInput.value);
+            const result = firstNumber * secondNumber;
+            resultSpan.textContent = result;
+        }
+
+        function divideNumbers() {
+            const firstNumber = parseFloat(firstNumberInput.value);
+            const secondNumber = parseFloat(secondNumberInput.value);
+            if (secondNumber === 0) {
+                resultSpan.textContent = "Cannot divide by zero";
+            } else {
+                const result = firstNumber / secondNumber;
+                resultSpan.textContent = result;
+            }
+        }
+
+        document.getElementById('multiplyButton').addEventListener('click', multiplyNumbers);
+        document.getElementById('divideButton').addEventListener('click', divideNumbers);
+    </script>
+</body>
+</html>

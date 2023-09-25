@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort String Alphabetically</title>
+</head>
+<body>
+    <h1>Sort String Alphabetically</h1>
+    <p>Original String: <span id="originalString">webmaster</span></p>
+    <p>Sorted String: <span id="sortedString"></span></p>
+
+    <script>
+        function sortStringAlphabetically(inputString) {
+            const sortedString = inputString.split('').sort().join('');
+            return sortedString;
+        }
+        const originalString = 'webmaster';
+        const sorted = sortStringAlphabetically(originalString);
+        document.getElementById('sortedString').textContent = sorted;
+    </script>
+</body>
+</html>

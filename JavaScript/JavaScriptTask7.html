@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Animation</title>
+    <style>
+        p{
+            font-weight: 900;
+            font-size: large;
+            color: blue
+        }
+        #myimg {
+            position: relative;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <img id="myimg" src="train1.png" />
+
+        <script>
+            var img = null;
+            var intervalId = null;
+            var isAnimating = false;
+
+            function init() {
+                img = document.getElementById('myimg');
+            }
+
+            function moveRight() {
+                if (isAnimating) {
+                    clearInterval(intervalId);
+                    isAnimating = false;
+                } else {
+                    var screenWidth = window.innerWidth;
+                    var currentPosition = parseInt(img.style.left || 0);
+                    var targetPosition = screenWidth - img.clientWidth;
+                    var step = 5;
+
+                    intervalId = setInterval(function () {
+                        currentPosition += step;
+                        img.style.left = currentPosition + 'px';
+
+                        if (currentPosition >= targetPosition) {
+                            clearInterval(intervalId);
+                            currentPosition = 0;
+                            isAnimating = false;
+                        }
+                    }, 20);
+                    isAnimating = true;
+                }
+            }
+
+            function stopAnimation() {
+                clearInterval(intervalId);
+                isAnimating = false;
+            }
+
+            window.onload = init;
+        </script>
+
+        <center>
+            <p>Click the following buttons to handle the animation:</p>
+            <button onclick="moveRight();">Start</button>
+            <button onclick="stopAnimation();">Stop</button>
+        </center>
+    </main>
+</body>
+</html>

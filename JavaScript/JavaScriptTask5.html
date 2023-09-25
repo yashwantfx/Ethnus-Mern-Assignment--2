@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-container label {
+            width: 150px;
+        }
+
+        .errorText {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Form</h1>
+    <form id="contactForm">
+        <div class="input-container">
+            <label for="name">Name:</label>
+            <input type="text" class="inputField" required>
+            <span class="errorText"></span>
+        </div>
+        <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="email" class="inputField" required>
+            <span class="errorText"></span>
+        </div>
+        <div class="input-container">
+            <label for="website">Website:</label>
+            <input type="url" class="inputField" required>
+            <span class="errorText"></span>
+        </div>
+        <div class="input-container">
+            <label for="message">Message:</label>
+            <textarea class="inputField" required></textarea>
+            <span class="errorText"></span>
+        </div>
+        <div>
+            <button type="button" id="submitButton">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        const submitButton = document.getElementById('submitButton');
+        const inputFields = document.querySelectorAll('.inputField');
+        const errorMessages = document.querySelectorAll('.errorText');
+
+        submitButton.addEventListener('click', validateForm);
+
+        function validateForm() {
+            inputFields.forEach((inputField, index) => {
+                if (!inputField.value) {
+                    inputField.classList.add('error');
+                    errorMessages[index].textContent = 'This field is required.';
+                } else {
+                    inputField.classList.remove('error');
+                    errorMessages[index].textContent = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

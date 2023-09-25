@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reverse Number</title>
+</head>
+<body>
+    <h1>Reverse Number</h1>
+    <p>Original Number: <span id="originalNumber">32243</span></p>
+    <p>Reversed Number: <span id="reversedNumber"></span></p>
+
+    <script>
+        function reverseNumber(number) {
+            const reversedString = number.toString().split('').reverse().join('');
+            return parseInt(reversedString);
+        }
+        const originalNumber = 32243; 
+        const reversed = reverseNumber(originalNumber);
+        document.getElementById('reversedNumber').textContent = reversed;
+    </script>
+</body>
+</html>

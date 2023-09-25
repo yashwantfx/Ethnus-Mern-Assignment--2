@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date and Time Display</title>
+</head>
+<body>
+    <button id="showDateButton">Show Date</button>
+    <p id="displayDate"></p>
+    <button id="showTimeButton">Show Time</button>
+    <p id="displayTime"></p>
+
+    <script>
+        document.getElementById('showDateButton').addEventListener('click', showDate);
+        document.getElementById('showTimeButton').addEventListener('click', showTime);
+
+        function showDate() {
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString('en-US', options);
+            document.getElementById('displayDate').textContent = formattedDate;
+        }
+
+        function showTime() {
+            const currentTime = new Date();
+            document.getElementById('displayTime').textContent = currentTime.toString();
+        }
+    </script>
+</body>
+</html>

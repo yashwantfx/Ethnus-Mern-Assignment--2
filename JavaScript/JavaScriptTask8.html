@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f3dab2, #d575bd);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            vertical-align: top;
+        }
+        label.checkbox-label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 1px;
+            margin: 1%;
+        }
+        textarea {
+            width: 100%;
+            padding: 5px;
+            height: 100px;
+        }
+        span{
+            margin-left: 10px;
+            color: red;
+        }
+        .custom-button {
+            background-color: red;
+            color: white;
+            border: black;
+            border-radius: 50px;
+            padding: 10px 20px; 
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form method="POST">
+        <table>
+            <tr>
+                <td><label for="first_name">First Name:</label></td>
+                <td><input type="text" id="first_name" name="first_name" required></td>
+                <td><span id="first_name_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="last_name">Last Name:</label></td>
+                <td><input type="text" id="last_name" name="last_name" required></td>
+                <td><span id="last_name_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+                <td><span id="email_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+                <td><span id="password_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="confirm_password">Re-enter Password:</label></td>
+                <td><input type="password" id="confirm_password" name="confirm_password" required></td>
+                <td><span id="confirm_password_strength">POOR OR MISMATCH</span></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td><input type="number" id="age" name="age" required></td>
+                <td><span id="age_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="phone_number">Phone Number:</label></td>
+                <td><input type="tel" id="phone_number" name="phone_number" required></td>
+                <td><span id="phone_number_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address:</label></td>
+                <td><textarea id="address" name="address" required></textarea></td>
+                <td><span id="address_strength">POOR</span></td>
+            </tr>
+            <tr>
+                <td><label for="state">State:</label></td>
+                <td><input type="text" id="state" name="state" required></td>
+                <td><span id="state_strength">POOR</span></td>
+            </tr>
+
+            <tr>
+                <td><label for="country">Country:</label></td>
+                <td>
+                    <select id="country" name="country" required>
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="India">India</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="languages">Languages known:</label></td>
+                <td>
+                    <input type="checkbox" id="english" name="languages_known[]" value="English"> <label class="checkbox-label" for="english">English</label>
+                    <input type="checkbox" id="kannada" name="languages_known[]" value="Kannada"> <label class="checkbox-label" for="kannada">Kannada</label>
+                    <input type="checkbox" id="hindi" name="languages_known[]" value="Hindi"> <label class="checkbox-label" for="hindi">Hindi</label>
+                    <input type="checkbox" id="telugu" name="languages_known[]" value="Telugu"> <label class="checkbox-label" for="telugu">Telugu</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="accept_terms">
+                        <input type="checkbox" id="accept_terms" name="accept_terms" required> <label class="checkbox-label" for="accept_terms">Hereby I declare all the given details are true</label>
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <p>Login to <a href="https://www.ethunus.com">Ethnus</a> website in</p>
+        <br>
+        <center>
+            <input type="submit" class="custom-button" value="REGISTER">
+        </center>
+    </form>
+    
+    <script>
+            function checkTextStrength(inputElement, strengthElement) {
+                const text = inputElement.value;
+                let strength = "POOR";
+                let color = "red";
+
+                if (inputElement.id === "password" && text !== "") {
+                    if (text.length >= 8 && text[0] === text[0].toUpperCase()) {
+                        strength = "GREAT";
+                        color = "green";
+                    } else if (text.length >= 8) {
+                        strength = "GOOD";
+                        color = "orange";
+                    }
+                } else if (inputElement.id === "confirm_password" && text !== "") {
+                    const password = document.getElementById("password").value;
+                    if (text !== password) {
+                        strength = "POOR OR MISMATCH";
+                        color = "red";
+                    }
+                } else if (inputElement.id === "age" || inputElement.id === "phone_number" || inputElement.id === "email") {
+                    if (text !== "") {
+                        strength = "GREAT";
+                        color = "green";
+                    }
+                } else if (text !== "") {
+                    if (text.length >= 8 && text[0] === text[0].toUpperCase()) {
+                        strength = "GREAT";
+                        color = "green";
+                    } else if (text.length >= 8) {
+                        strength = "GOOD";
+                        color = "orange";
+                    }
+                }
+
+                strengthElement.textContent = strength;
+                strengthElement.style.color = color;
+                strengthElement.style.marginLeft = "10px";
+            }
+            const inputFields = document.querySelectorAll("input[type='text'], input[type='email'], input[type='password'], input[type='tel'], input[type='number'], textarea");
+            inputFields.forEach((inputElement) => {
+                const strengthElement = inputElement.parentElement.nextElementSibling.querySelector("span");
+                inputElement.addEventListener("input", () => {
+                    checkTextStrength(inputElement, strengthElement);
+                });
+            });
+
+            const confirmPasswordInput = document.getElementById("confirm_password");
+            const confirmPasswordStrength = document.getElementById("confirm_password_strength");
+
+            confirmPasswordInput.addEventListener("input", () => {
+                checkTextStrength(confirmPasswordInput, confirmPasswordStrength);
+            });
+            const ageInput = document.getElementById("age");
+            const ageStrength = document.getElementById("age_strength");
+
+            const phoneNumberInput = document.getElementById("phone_number");
+            const phoneNumberStrength = document.getElementById("phone_number_strength");
+
+            const addressInput = document.getElementById("address");
+            const addressStrength = document.getElementById("address_strength");
+
+            const stateInput = document.getElementById("state");
+            const stateStrength = document.getElementById("state_strength");
+
+            ageInput.addEventListener("input", () => {
+                checkTextStrength(ageInput, ageStrength);
+            });
+
+            phoneNumberInput.addEventListener("input", () => {
+                checkTextStrength(phoneNumberInput, phoneNumberStrength);
+            });
+
+            addressInput.addEventListener("input", () => {
+                checkTextStrength(addressInput, addressStrength);
+            });
+
+            stateInput.addEventListener("input", () => {
+                checkTextStrength(stateInput, stateStrength);
+            });
+
+    </script>
+</body>
+</html>
